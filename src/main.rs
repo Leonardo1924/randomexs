@@ -91,6 +91,41 @@ fn fibonacci_sequence(){
     println!();
 }
 
+fn fib(u: u32) -> u32 {
+    if u <= 0{
+        return 0;
+    } else if u == 1{
+        return 1;
+    } else {
+        fib(u-1) + fib(u-2)
+    }
+
+}
+
+
+fn fibonacci_sequence_recursive(){
+    println!("Fibonacci sequence");
+    println!("Please, enter the number of elements of the sequence: ");
+
+    let mut n = String::new();
+    io::stdin()
+        .read_line(&mut n)
+        .expect("Failed to read line");
+
+    let n: u32 = match n.trim().parse() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("Invalid number");
+            return;
+        }
+    };
+
+    for i in 0..n {
+        print!("{} ", fib(i));
+    }
+    println!();
+}
+
 fn christmas_carol(){
     println!("The Twelve Days of Christmas");
     // The Twelve Days of Christmas using an array of strings
@@ -118,8 +153,9 @@ fn main() {
         println!("Menu:");
         println!("1. Temperature converter");
         println!("2. Fibonacci sequence");
-        println!("3. Christams carol");
-        println!("4. Exit");
+        println!("3. Fibonacci but recursive!");
+        println!("4. Christams carol");
+        println!("5. Exit");
         println!("Please, select an option: ");
 
         let mut option = String::new();
@@ -139,8 +175,9 @@ fn main() {
         match option {
             1 => temperature_converter(),
             2 => fibonacci_sequence(),
-            3 => christmas_carol(),
-            4 => {
+            3 => fibonacci_sequence_recursive(),
+            4 => christmas_carol(),
+            5 => {
                 println!("Goodbye!");
                 break;
             },
